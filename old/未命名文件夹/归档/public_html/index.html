@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title id="h1">还在为考试发愁吗，快来测试一下你的真实水平吧</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel='stylesheet' href='cssfor.css' type='text/css'> 
+            <script src="jquery.js"></script>
+        <script src="unsafeWebDB.js"></script>
+    
+    <script>
+                   var uid = 'songzhan';
+            var p_name = 'users';var n;
+         function change1()
+        { document.getElementById("img1").src='reg2.jpg';}
+        function cb1()
+        {document.getElementById("img1").src='reg1.jpg';}
+         function change2()
+        { document.getElementById("img2").src='log2.jpg';}
+        function cb2()
+        {document.getElementById("img2").src='log1.jpg';}
+        function logon()
+        { var user = {'name': $('#name').val(),
+                            'pwd': $('#pwd').val()};
+           var users = UnsafeDBApp.get_object(uid, p_name);
+           console.log(users);
+           for(n=0;n<20;n++)
+           {if (user.name===users[n].name&&user.pwd===users[n].pwd)
+       {go();}}
+   
+   alert('用户名不存在');}
+        function go()
+        {window.location.href='./2.html';}
+         function go2()
+        {window.location.href='./3.html';}
+        </script>
+        </head>
+    <body>
+        <div>账号</div>
+         <img id="img1" src="reg1.jpg" onmousemove="change1()" onmouseout="cb1()" onclick="go2()" />
+         <img id="img2" src="log1.jpg" onmousemove="change2()" onmouseout="cb2()" onclick="logon()"/>
+<input type="text" id="name" />
+<br />
+<p>密码:</p> 
+<input type="text" id="pwd" />
+<br />
+
+    </body>
+     
+</html>

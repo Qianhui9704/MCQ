@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>	
+<body background="violin.jpg" style="z-index:-100;position:absolute;left:0;top:0;background-size:cover;">
+<font color="#FFFFFF">
+<style>
+#toask{
+	position:fixed;
+	left:50%;
+	top:100px;
+	right:100px;
+	bottom:10%;
+	margin-left:-125px;
+	width:550px;height:550px;background:#000;
+	z-index:-1;}
+#toask2{
+	position:fixed;
+	left:50%;
+	top:100px;
+	right:100px;
+	bottom:10%;
+	margin-left:-125px;
+	width:550px;height:550px;background:#000;
+	z-index:-11;}
+#toask3{
+	position:fixed;
+	left:50%;
+	top:100px;
+	right:100px;
+	bottom:10%;
+	margin-left:-125px;
+	width:550px;height:550px;background:#000;
+	z-index:100;}
+#dagaigai{
+	position:fixed;
+	left:50%;
+	top:100px;
+	right:100px;
+	bottom:10%;
+	margin-left:-125px;
+	width:550px;height:550px;background:#000;
+	z-index:-100;}
+#player{
+	position:fixed;
+	left:50%;
+	top:100px;
+	right:100px;
+	bottom:10%;
+	margin-left:-125px;
+	width:550px;height:550px;
+	z-index:1;}
+</style>
+    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+    
+    <div id="toask">
+        <h>How could violin generate different pitches of sounds?</h>
+        <p id='optiona'>Because the lengths and widths of the vibrating sources are different.</p><input type="radio"  name="1" value="a" />
+        <p id='optionb'>Because the forces that people use to press the bows are different.</p><input type="radio"  name="1" value="b" />
+        <p id='optionc'>Because the material that used to create the violin is different.</p> <input type="radio"  name="1" value="c" />
+ <button type="button" onclick="go()">submit</button>
+</div>
+ <div id="toask2">
+        <h>A male singer is singing loudly in the music hall, the female singer is singing in company with him lightly.  Which of the following answers is correct?</h>
+        <p id='optiona'>A. The male singer��s voice has higher pitch and higher loudness while the female singer��s voice has lower pitch and lower loudness. </p><input type="radio"  name="2" value="a" />
+        <p id='optionb'>B. The male singer��s voice has lower pitch and higher loudness while the female singer��s voice has higher pitch and lower loudness. </p><input type="radio"  name="2" value="b" />
+        <p id='optionc'>C. The male singer��s voice has higher pitch but lower loudness while the female singer��s voice has lower pitch but higher loudness. </p> <input type="radio"  name="2" value="c" />
+        <p id='optionc'>D. The male singer��s voice has lower pitch and lower loudness while the female singer��s voice has higher pitch but higher loudness.</p> <input type="radio"  name="2" value="d" />
+ <button type="button" onclick="gogo()">submit</button>
+</div>
+<div id="toask3">
+        <h></h>
+        <p id="ques"></p>
+        <p id='opt1'>1</p><input type="radio"  name="9" value="a" />
+        <p id='opt2'>2</p><input type="radio"  name="9" value="b" />
+        <p id='opt3'>3</p><input type="radio"  name="9" value="c" />
+        <p id='opt4'>4</p><input type="radio"  name="9" value="d" />
+        <p id="correct"></p>
+        <p id="explain"></p>
+ <button type="button" onclick="resubmit()" id='bt1'>resubmit</button>
+ <button type="button" onclick="gogo()" id='bt2'>submit</button>
+ <button type="button" onclick="next()" id='bt3'>next</button>
+
+</div>
+    <div id="dagaigai">
+        <h></h>
+        <p> You have finished all the formative questions, you can now go discuss with your partner</p>
+ <button type="button" onclick="top6()" id='bt3'>get prepared for teaching your partner</button>
+
+</div>
+<script src="jquery.js"></script>
+<script>
+document.getElementById('bt1').style.display="none";
+document.getElementById('bt3').style.display="none";
+var ques= new Array('Take a piece of cardboard and let it pass through a wooden comb and a plastic comb, the two sounds are different in terms of:','which of the following conclusions are correct? '
+             );
+             var optiona= new Array('Amplitude ','The higher the frequency of the vibrating part, the louder the loudness will be. ');
+             var optionb= new Array('Pitch','The higher the frequency of the vibrating part, the higher the pitch will be. ');
+             var optionc= new Array('Timbre','The higher the frequency of the vibrating part, the lower the pitch will be. ');
+             var optiond= new Array('All of the above','The higher the frequency of the vibrating part, the better the timbre will be. ');
+             var answer= new Array('c','b');
+             var explain= new Array('The cardboard is passing through different materials of comb so that the timbres will be different',
+             'Pitch is always assiciated with the frequency of the voice as a vibration'
+            
+                    );
+            
+var a;
+var towait = 29000;
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '550',
+          width: '550',
+          videoId: 'VJI9X-K-y-E',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+          setTimeout(stopVideo, towait);
+          done = true;
+        }
+      }
+      function stopVideo() {
+        player.pauseVideo();
+document.getElementById('player').style['z-index']=-10;
+document.getElementById('player').style['-webkit-transform']='translateZ(0)';
+      }
+      function stopVideo2() {
+        player.pauseVideo();
+	player.seekTo(552,true);
+player.playVideo();
+setTimeout(dojob, 28000);
+      }
+function dojob(){
+document.getElementById('toask2').style['z-index']=11;
+document.getElementById('toask2').style['-webkit-transform']='translateZ(0)';
+}
+var quesn=0;
+function gogo(){
+
+ a=$('input:radio[name="9"]:checked').val();
+if(a===undefined){alert("input something, ok?");return undefined;}
+ document.getElementById('bt1').style.display="";
+ document.getElementById('bt3').style.display="";
+if(a==answer[quesn]){
+    document.getElementById('correct').innerHTML="Correct!";
+}
+else{document.getElementById('correct').innerHTML="Not Correct, you may read the explanation and try again";}
+document.getElementById('explain').innerHTML=explain[quesn];}
+function resubmit(){
+a=$('input:radio[name="9"]:checked').val();
+if(a==answer[quesn]){
+    document.getElementById('correct').innerHTML="Correct!";
+}
+else{document.getElementById('correct').innerHTML="Not Correct, you may read the explanation and try again";}
+document.getElementById('explain').innerHTML=explain[quesn];
+}
+function refresh(){
+   document.getElementById('bt1').style.display="none";
+    document.getElementById('bt3').style.display="none";
+  document.getElementById("ques").innerHTML=ques[quesn];
+  document.getElementById("opt1").innerHTML=optiona[quesn];
+  document.getElementById("opt2").innerHTML=optionb[quesn];
+  document.getElementById("opt3").innerHTML=optionc[quesn];
+  document.getElementById("opt4").innerHTML=optiond[quesn];
+  document.getElementById("correct").innerHTML="";
+  document.getElementById("explain").innerHTML=""; 
+}
+refresh();
+function next(){
+    quesn++;
+    if(quesn>=ques.length){
+        document.getElementById('dagaigai').style['z-index']=101;
+    }
+    else{
+    
+    refresh();}
+}
+function top6(){
+    window.location.href='p6.html';
+}
+function last(){
+    quesn--;
+    refresh();
+}
+
+
+
+
+
+
+
+function go(){
+ a=$('input:radio[name="1"]:checked').val();
+if(a=='a'){
+document.getElementById('player').style['z-index']=10;
+document.getElementById('player').style['-webkit-transform']='translateZ(0)';
+player.seekTo(40,true);
+towait=140000;
+player.playVideo();
+setTimeout(stopVideo2, towait);
+}
+
+if(a=='b'){
+document.getElementById('player').style['z-index']=10;
+document.getElementById('player').style['-webkit-transform']='translateZ(0)';
+player.seekTo(180,true);
+towait=197000;
+player.playVideo();
+setTimeout(stopVideo2, towait);}
+
+if(a=='c'){
+document.getElementById('player').style['z-index']=10;
+document.getElementById('player').style['-webkit-transform']='translateZ(0)';
+player.seekTo(377,true);
+towait=175000;
+player.playVideo();
+setTimeout(stopVideo2, towait);}
+}
+    </script>
+</font>
+  </body>
+</html>

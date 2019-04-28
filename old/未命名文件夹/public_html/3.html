@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>还在为考试发愁吗，快来测试一下你的真实水平吧</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel='stylesheet' href='cssfor.css' type='text/css'> 
+        <script src="jquery.js"></script>
+        <script src="unsafeWebDB.js"></script>
+        
+        <script>
+             $(function () {
+                App.doc_ready();
+            });
+            var uid = 'songzhan';
+            var p_name = 'users';
+
+            var App = {
+                doc_ready: function () {
+                    $('#btn-reg').click(function () {
+
+                        var users = UnsafeDBApp.get_object(uid, p_name);
+                        if (users === null) {
+                            users = [];
+                        }
+                        var user = {'name': $('#name').val(),
+                            'pwd': $('#pwd').val()};
+                        users.push(user);
+                        UnsafeDBApp.set_object(uid, p_name, users);
+                        alert('注册成功');
+                    
+                })
+            }}
+        </script>
+    </head>
+    <body>
+        <div></div>
+        
+        <p>请输入新用户的资料</p>       
+<p>用户名:</P> 
+<input type="text" id="name" />
+<br />
+<p>密码:</p> 
+<input type="text" id="pwd" />
+  <button type="button" id="btn-reg" >注册</button>
+
+  <p id="hide></p>
+<br />
+    </body>
+</html>

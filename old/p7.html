@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>	
+<body background="violin.jpg" style="z-index:-100;position:absolute;left:0;top:0;background-size:cover;">
+<font color="#FFFFFF">
+<style>
+#toask{
+	position:fixed;
+	left:50%;
+	top:100px;
+	right:100px;
+	bottom:10%;
+	margin-left:-125px;
+	width:550px;height:550px;background:#000;
+	z-index:-1;}
+#toask2{
+	position:fixed;
+	left:50%;
+	top:100px;
+	right:100px;
+	bottom:10%;
+	margin-left:-125px;
+	width:550px;height:550px;background:#000;
+	z-index:-11;}
+#toask3{
+	position:fixed;
+	left:50%;
+	top:100px;
+	right:100px;
+	bottom:10%;
+	margin-left:-125px;
+	width:550px;height:550px;background:#000;
+	z-index:100;}
+#dagaigai{
+	position:fixed;
+	left:50%;
+	top:100px;
+	right:100px;
+	bottom:10%;
+	margin-left:-125px;
+	width:550px;height:550px;background:#000;
+	z-index:-100;}
+#player{
+	position:fixed;
+	left:50%;
+	top:100px;
+	right:100px;
+	bottom:10%;
+	margin-left:-125px;
+	width:550px;height:550px;
+	z-index:1;}
+</style>
+    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+    
+    <div id="toask">
+        <h>How could violin generate different pitches of sounds?</h>
+        <p id='optiona'>Because the lengths and widths of the vibrating sources are different.</p><input type="radio"  name="1" value="a" />
+        <p id='optionb'>Because the forces that people use to press the bows are different.</p><input type="radio"  name="1" value="b" />
+        <p id='optionc'>Because the material that used to create the violin is different.</p> <input type="radio"  name="1" value="c" />
+ <button type="button" onclick="go()">submit</button>
+</div>
+ <div id="toask2">
+        <h>A male singer is singing loudly in the music hall, the female singer is singing in company with him lightly.  Which of the following answers is correct?</h>
+        <p id='optiona'>A. The male singer��s voice has higher pitch and higher loudness while the female singer��s voice has lower pitch and lower loudness. </p><input type="radio"  name="2" value="a" />
+        <p id='optionb'>B. The male singer��s voice has lower pitch and higher loudness while the female singer��s voice has higher pitch and lower loudness. </p><input type="radio"  name="2" value="b" />
+        <p id='optionc'>C. The male singer��s voice has higher pitch but lower loudness while the female singer��s voice has lower pitch but higher loudness. </p> <input type="radio"  name="2" value="c" />
+        <p id='optionc'>D. The male singer��s voice has lower pitch and lower loudness while the female singer��s voice has higher pitch but higher loudness.</p> <input type="radio"  name="2" value="d" />
+ <button type="button" onclick="gogo()">submit</button>
+</div>
+<div id="toask3">
+        <h></h>
+        <p id="ques"></p>
+        <p id='opt1'>1</p><input type="radio"  name="9" value="a" />
+        <p id='opt2'>2</p><input type="radio"  name="9" value="b" />
+        <p id='opt3'>3</p><input type="radio"  name="9" value="c" />
+        <p id='opt4'>4</p><input type="radio"  name="9" value="d" />
+        <p id="correct"></p>
+       
+ <button type="button" onclick="resubmit()" id='bt1'>resubmit</button>
+ <button type="button" onclick="gogo()" id='bt2'>submit</button>
+ <button type="button" onclick="next()" id='bt3'>next</button>
+
+</div>
+    <div id="dagaigai">
+        <h></h>
+        You have finished all the summative questions, your point is<p id='fen'></p> out of 6
+
+
+</div>
+<script src="jquery.js"></script>
+<script>
+    
+document.getElementById('bt1').style.display="none";
+document.getElementById('bt3').style.display="none";
+var ques= new Array('Which is the major vibrating part in a violin?',
+             'Speaking of the wind chimes, it has both the beauty of visual styling and the enjoyment of hearing. With the same force, Jonanthan tapped the metal pipes made of the same material and the same thickness but different lengths in the wind chime shown, listening carefully to the sound they made. His method is best for studying which aspect of sound? ',
+             'Which of the following cases involves the change of timbre?',
+             'As an important quality of sounds, amplitude for a wave may be best described as:',
+             'In an orchestra consisting of various instruments, how can we distinguish one instrument from another?',
+             'While playing the violin, which of the following actions can make the highest (sharpest) sound?'
+                    );
+             var optiona= new Array('Bow','The relationship between timbre and metal tube material','drummer beats the drum','How strong it is','Different pitches they make','Press a wider string while making the vibrating part shorter');
+             var optionb= new Array('Bridge','The relationship between amplitude and metal tube material','More and more people join the chorus','How sharp it is','Different amplitudes of sounds','Press a narrower string while making the vibrating part shorter');
+      var optionc= new Array('Strings','The relationship between pitch and length of metal tube','A rocket is launching','How delightful it is','Different melodies that they play','Press a wider string while making the vibrating part longer');
+             var optiond= new Array('Top plate','The relationship between speed and metal tube length','A tuner tunes a piano','How regular it is；','Different timbres that each instrument has','Press a narrower string while making the vibrating part longer');
+             var answer= new Array('c','c','b','b','a','b');
+             var explain= new Array('传输层提供可靠的端对端的服务；数据链路层使有差错的物理信道变成无差错的逻辑链路；物理层提供原始二进制数据的传输；网络层主要负责数据的路径选择、拥塞控制。故选D。',
+             '语义、语法、时序（定时）是网络协议三个主要组成部分。结构不是网络协议的组成部分之一。故选C。',
+             '500转换成二进制为111110100，有9位。将子网掩码255.255.255.255从后向前的9位变成0，即为所求子网掩码255.255.254.0（11111111.11111111.11111110.00000000）。故选C。',
+             '集线器共享带宽，交换机独享带宽',
+             '若将5000字节封装成IP数据报，需要加上至少20字节的IP首部，则总的IP数据报长度为5020字节，大于以太网的上限1500字节所以必须分片。一个IP数据报能传送的最大数据为1480字节，所以需要分成4片。',
+             'ICMP是Internet控制报文协议，控制消息是指网络通不通、主机是否可达、路由是否可用等网络本身的消息',
+             '路由器会修改报文内容，比如NAT协议，就利用了路由器此特点，起到屏蔽内部主机IP的作用'
+                    );
+            
+var a;
+var towait = 29000;
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '550',
+          width: '550',
+          videoId: 'VJI9X-K-y-E',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+          setTimeout(stopVideo, towait);
+          done = true;
+        }
+      }
+      function stopVideo() {
+        player.pauseVideo();
+document.getElementById('player').style['z-index']=-10;
+document.getElementById('player').style['-webkit-transform']='translateZ(0)';
+      }
+      function stopVideo2() {
+        player.pauseVideo();
+	player.seekTo(552,true);
+player.playVideo();
+setTimeout(dojob, 28000);
+      }
+function dojob(){
+document.getElementById('toask2').style['z-index']=11;
+document.getElementById('toask2').style['-webkit-transform']='translateZ(0)';
+}
+var quesn=0;
+var conum=0;
+function gogo(){
+ document.getElementById('bt2').style.display="none";
+ a=$('input:radio[name="9"]:checked').val();
+if(a===undefined){alert("input something, ok?");return undefined;}
+ document.getElementById('bt1').style.display="";
+ document.getElementById('bt3').style.display="";
+if(a==answer[quesn]){
+    document.getElementById('correct').innerHTML="Correct!";
+    conum++;
+}
+else{document.getElementById('correct').innerHTML="Not Correct, you may read the explanation and try again";}
+document.getElementById('explain').innerHTML=explain[quesn];}
+function resubmit(){
+a=$('input:radio[name="9"]:checked').val();
+if(a==answer[quesn]){
+    document.getElementById('correct').innerHTML="Correct!";
+}
+else{document.getElementById('correct').innerHTML="Not Correct, you may read the explanation and try again";}
+document.getElementById('explain').innerHTML=explain[quesn];
+}
+function refresh(){
+   document.getElementById('bt1').style.display="none";
+    document.getElementById('bt3').style.display="none";
+  document.getElementById("ques").innerHTML=ques[quesn];
+  document.getElementById("opt1").innerHTML=optiona[quesn];
+  document.getElementById("opt2").innerHTML=optionb[quesn];
+  document.getElementById("opt3").innerHTML=optionc[quesn];
+  document.getElementById("opt4").innerHTML=optiond[quesn];
+  document.getElementById("correct").innerHTML="";
+  document.getElementById("explain").innerHTML=""; 
+}
+refresh();
+
+function next(){
+    quesn++;
+    if(quesn>=ques.length){
+    document.getElementById('fen').innerHTML=conum; 
+    document.getElementById('dagaigai').style['z-index']=101;
+    }
+    else{
+    
+    refresh();}
+}
+function top6(){
+    window.location.href='./p6.html';
+}
+function last(){
+    quesn--;
+    refresh();
+}
+
+
+
+
+
+
+
+function go(){
+ a=$('input:radio[name="1"]:checked').val();
+if(a=='a'){
+document.getElementById('player').style['z-index']=10;
+document.getElementById('player').style['-webkit-transform']='translateZ(0)';
+player.seekTo(40,true);
+towait=140000;
+player.playVideo();
+setTimeout(stopVideo2, towait);
+}
+
+if(a=='b'){
+document.getElementById('player').style['z-index']=10;
+document.getElementById('player').style['-webkit-transform']='translateZ(0)';
+player.seekTo(180,true);
+towait=197000;
+player.playVideo();
+setTimeout(stopVideo2, towait);}
+
+if(a=='c'){
+document.getElementById('player').style['z-index']=10;
+document.getElementById('player').style['-webkit-transform']='translateZ(0)';
+player.seekTo(377,true);
+towait=175000;
+player.playVideo();
+setTimeout(stopVideo2, towait);}
+}
+    </script>
+</font>
+  </body>
+</html>
