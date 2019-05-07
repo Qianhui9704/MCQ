@@ -1,0 +1,555 @@
+<html>
+<head>
+    <title>Multiple Choice Generator</title>
+    <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light+Two" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<style>
+.container{
+    width: 100%;
+    height: 100%;
+    background-color: beige;
+}
+.instruction{
+    width: 70%;
+    height: 30%;
+    text-align: center;
+    margin-left: auto;
+    margin-right:auto;
+    font-family: 'Shadows Into Light Two', cursive;
+}
+.question{
+
+    width: 70%;
+    height: auto;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+
+}
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.btn {
+    border: 2px solid gray;
+    color: gray;
+    background-color: white;
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+    #correct{
+        color: red;
+    }
+</style>
+</html>
+<div class="container">
+    <div class="instruction" id="kaishi">
+        <br><br>
+        <h1>Welcome to Multiple Question Generator!</h1>
+        <p>
+            <h3>Upload your data first</h3>
+            <div class="upload-btn-wrapper">
+                <button class="btn">Upload a file</button>
+                <input type="file" id="file" />
+            </div><br><br>
+                <button type="button" class="btn btn-info" onclick="readAsTextA()" >Read as answers</button><br>
+                <span id="answerInput"></span><br>
+                <button type="button" class="btn btn-info" onclick="readAsTextQ()" >Read as questions</button><br>
+                <span id="questionInput"></span><br>
+        </p>
+        <p id="intro">As you have provided all the data for answers and questions, brand new assessment is ready for you, click start to begin practice</p>
+        <button type="button" class="btn btn-info" onclick="begin()" id='ready'>Start</button>
+    </div>
+    <div class="question" style="text-align: left">
+        <div id='ti' style="margin-top: 60px;">
+            <p id="ques"></p>
+            <input type="radio"  name="9" value="1" />&nbsp<span id='opt1'>1</span><br>
+            <input type="radio"  name="9" value="2" />&nbsp<span id='opt2'>2</span><br>
+            <input type="radio"  name="9" value="3" />&nbsp<span id='opt3'>3</span><br>
+            <input type="radio"  name="9" value="4" />&nbsp<span id='opt4'>4</span><br>
+            <hr>
+            <span id="correct"></span><br>
+            <hr>
+            <span id="explain"></span><br><hr>
+            <div class="btn-group">
+                <button type="button" class="btn btn-info" onclick="retake()" id='bt1'>Retake</button>
+                <button type="button" class="btn btn-info" onclick="submit()" id='bt2'>Submit</button>
+                <button type="button" class="btn btn-info" onclick="next()" id='bt3'>Next</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src='lodash.js'></script>
+<script src='jquery.js'></script>
+<script type="text/javascript">
+    function chushi(){
+        document.getElementById('bt1').style.display = "none";
+        document.getElementById('bt2').style.display = "";
+        document.getElementById('bt3').style.display = "";
+        document.getElementById('explain').style.display = "none";
+        document.getElementById('correct').style.display = "none";
+    }
+//    The following is to clarify concepts.
+//    What is you favorite fruit?
+//    a.banan
+//    b.apple(choice changed)
+//    
+//    what is your favorite fruit?(question changed)
+//    a.orange
+//    b.pear
+//    
+//    what is your mother'name?(topic changed)
+//    a.zhangsan
+//    b.lisi
+        //var result = document.getElementById("result");
+        var file = document.getElementById("file");
+        var firsttry = true;
+        var answerread = false;
+        var questionread = false;
+        var imacorrect = [];//all correctc choices under one topic regardless of questions, quanzhengque is always a subset of it
+        var imacorrect2 = []; // a deep clone of it to do something
+        var qnumberundert = 4; //how many questions are going to be made under one topic
+        var imajiti = 1; // which topic it is currently,this is not the index but the number, to say, this starts from 1
+        var quanzhengque = []; // 3 correct choices under the corrent topic for 3 questions
+        var diffi = new Map(); //a map from question number to its difficulty
+        var quanxuanze = []; //3 groups of 3 wrong choices under the current topic
+        var lastcorrect = false; // did student answer the last question under this topic correctly?
+        var imawen = parseInt(qnumberundert / 2); //what is the current question number under the current topic
+        console.log("the first imawen is " + imawen);
+        var thecorrectindex; // what is the correct choice under the current question
+        var hardtosimple = [];//the array containing the index from hard to simple
+        window.onload = function () {
+            document.getElementById('bt1').style.display = "";
+            document.getElementById('ti').style.display = "none";
+            document.getElementById('intro').style.display = "none";
+            document.getElementById('ready').style.display = "none";
+           // document.getElementById('result').style.display = "none";
+
+        }
+//判断浏览器是否支持FileReader接口  
+        if (typeof FileReader == 'undefined') {
+            alert("<p>你的浏览器不支持FileReader接口！</p>");
+            //使选择控件不可操作  
+            file.setAttribute("disabled", "disabled");
+        }
+
+        var answers = [];
+        var questions = [];
+
+        function readAsTextA() {
+
+
+            var c1 = new Array();
+            var c2 = new Array();
+            var c3 = new Array();
+            var c4 = new Array();
+            var c5 = new Array();
+            var c6 = [];
+            var file = document.getElementById("file").files[0];
+            var reader = new FileReader();
+            //将文件以文本形式读入页面  
+            reader.readAsText(file);
+            reader.onload = function (f) {
+                //var result = document.getElementById("result");
+                var data = this.result;
+                data = data.split("\n");
+                var testline = data[0].split(/,(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))/);
+                if (testline.length == 6) {
+                    answerread = true;
+                    for (var n = 1; n < data.length; n++) {
+                        //var theline = data[n].split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
+                        var theline = data[n].split(/,(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))/);
+
+                        c1.push(theline[0]);
+                        c2.push(theline[1]);
+                        c3.push(theline[2]);
+                        c4.push(theline[3]);
+                        c5.push(theline[4]);
+                        c6.push(theline[5]);
+                    }
+                    for (var n = 0; n < c1.length; n++) {
+                        var ananswer = new Array();
+                        ananswer.push(c1[n]);
+                        ananswer.push(c2[n]);
+                        ananswer.push(c3[n]);
+                        ananswer.push(c4[n]);
+                        ananswer.push(c5[n]);
+                        ananswer.push(c6[n]);
+                        answers.push(ananswer);
+                    }
+                    //alert('answer input completed');
+                    document.getElementById('answerInput').innerHTML="Answer input completed."
+                } else {
+                    alert("incorrect input format");
+
+                }
+
+//            alert(answers[44][0]);
+//            alert(answers[1][0]);
+
+
+                //显示文件  
+                //result.innerHTML = this.result;
+                if (answerread == true && questionread == true) {
+                    document.getElementById('intro').style.display = "";
+                    document.getElementById('ready').style.display = "";
+                }
+
+            }
+        }
+
+        function readAsTextQ() {
+
+            var c1 = new Array();
+            var c2 = new Array();
+            var c3 = new Array();
+            var c4 = new Array();
+            var file = document.getElementById("file").files[0];
+            var reader = new FileReader();
+            //将文件以文本形式读入页面  
+            reader.readAsText(file);
+            reader.onload = function (f) {
+                //var result = document.getElementById("result");
+                var data = this.result;
+                data = data.split("\n");
+                var testline = data[0].split(/,(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))/);
+                if (testline.length == 12) {
+                    for (var n = 1; n < data.length; n++) {
+                        var theline = data[n].split(/,(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))/);
+                        c1.push(theline[0]);
+                        c2.push(theline[1]);
+                        c3.push(theline[2]);
+                        c4.push(theline[3]);
+                    }
+
+                    //alert(c3[0]);
+//        alert(c2[1]);
+//        alert(c3[2]);
+                    for (var n = 0; n < c1.length; n++) {
+                        var aquestion = new Array();
+                        aquestion.push(c1[n]);
+                        aquestion.push(c2[n]);
+                        aquestion.push(c3[n]);
+                        aquestion.push(c4[n]);
+                        questions.push(aquestion);
+                    }
+                    //alert('question input completed');
+                    document.getElementById('questionInput').innerHTML="Question input completed."
+                    questionread = true;
+                } else {
+                    alert("incorrect input format");
+                }
+
+                //显示文件  
+                //result.innerHTML = questions[0];
+                if (answerread == true && questionread == true) {
+                    document.getElementById('intro').style.display = "";
+                    document.getElementById('ready').style.display = "";
+                }
+
+            }
+        }
+        function generatetopic() {
+            var canend = false;
+            //this function refreshes the current topic according to variable imajiti, and make all the potential questions under it according to variable qnumberundert;
+            while (canend == false)
+            {
+                if (questions[imajiti - 1] == undefined) {
+                    alert("you have completed all topics");
+                    canend = true;
+                } else if (questions[imajiti - 1][0].slice(0, 2) == "MC") {
+                    canend = true;
+                    imacorrect = new Array();
+                    imacorrect2 = new Array();
+                    var cuofa = new Array();
+                    var imawrong = new Map();
+                    for (var n = 0; n < answers.length; n++) {
+                        if (answers[n][1] == questions[imajiti - 1][1]) {
+                            if (answers[n][3] == questions[imajiti - 1][3] && answers[n][6] > 0.5) {
+                                imacorrect.push(answers[n]);
+                            } else {
+                                var xinde = true;
+                                for (var m = 0; m < cuofa.length; m++) {
+
+                                    if (answers[n][3] == cuofa[m]) {
+                                        xinde = false;
+                                    }
+
+                                }
+                                if (xinde == true) {
+                                    cuofa.push(answers[n][3]);
+                                }
+
+                            }
+                        }
+                    }
+                    imacorrect2 = _.cloneDeep(imacorrect);
+                    for (var n = 0; n < cuofa.length; n++) {
+                        var cuowujituan = new Array();
+                        imawrong.set(cuofa[n], cuowujituan);
+
+                    }
+                    for (var n = 0; n < answers.length; n++) {
+                        if (answers[n][1] == questions[imajiti - 1][1]) {
+                            for (var m = 0; m < cuofa.length; m++) {
+                                if (answers[n][3] == cuofa[m]) {
+                                    imawrong.get(cuofa[m]).push(answers[n]);
+                                }
+                            }
+                        }
+
+                    }
+
+                    //alert(cuofa);
+
+                    var copy = _.cloneDeep(imawrong);
+                    var jishi = 0;
+                    while (jishi < qnumberundert)
+                    {
+                        jishi++;
+                        var xuanze = new Array();
+                        while (xuanze.length < 3) {
+                            var temp = xuanze.length;
+
+
+                            for (var key of imawrong.keys()) {
+                                var allowedtopush = true;
+                                if (imawrong.get(key).length != 0) {
+                                    var n = randomNum(0, imawrong.get(key).length - 1);
+                                    //alert(n);
+                                    //alert("This is trying to be pushed: " + imawrong.get(key)[n]);
+
+                                    for (var element of xuanze) {
+                                        if (element[0] == imawrong.get(key)[n][0]) {
+                                            allowedtopush = false; }
+                                    }
+
+                                    if (allowedtopush == true) {
+                                        xuanze.push(imawrong.get(key)[n].concat());
+                                        //alert("This is pushed: " + imawrong.get(key)[n]);
+                                    } else {
+                                        //alert("pushing failed due to similarity")
+                                    }
+
+                                    Object.assign(imawrong.get(key)[n], imawrong.get(key)[imawrong.get(key).length - 1]);
+
+                                    imawrong.get(key).pop();
+
+
+                                    //alert("the number of wrong answers for this question is " + xuanze.length);
+
+//                 for(var element in imawrong.get(key)){
+//                     console.log(element[0]);
+//                 }
+                                    for (var qq = 0; qq < imawrong.get(key).length; qq++) {
+
+                                    }
+                                }
+                            }
+                            if (xuanze.length == temp && allowedtopush == true) {
+                                //alert("warning, not similar questions are not enough, similarity check standard lowered to make sure more questions can be made!");
+                                imawrong = _.cloneDeep(copy);
+
+                                for (var qq = 0; qq < imawrong.get(key).length; qq++) {
+
+                                }
+
+                            }
+                        }
+
+                        quanxuanze.push(xuanze);
+                        //alert("a new question pushed");
+                    }
+                    var usedn = new Array();
+
+                    for (var m = 0; m < quanxuanze.length; m++) {
+                        var nqualified = false;
+                        while (nqualified == false) {
+                            nqualified = true;
+                            var n = randomNum(0, imacorrect.length - 1);
+                            for (var shu of usedn) {
+                                if (n == shu) {
+                                    nqualified = false
+                                }
+                            }
+                        }
+                        quanzhengque.push(imacorrect[n]);
+                        imacorrect2.splice(n, 1);//this time this place is a expedient, for I give no consideration for conditions where there are too less correct choices available
+                        usedn.push(n);
+                    }
+                    usedn = [];
+
+
+                    for (var n = 0; n < quanxuanze.length; n++) {
+                        var thisdiff = (1 / quanzhengque[n][6] - quanxuanze[n][0][6]) + (quanzhengque[n][6] - quanxuanze[n][1][6]) + (quanzhengque[n][6] - quanxuanze[n][2][6]);
+                        diffi.set(n, thisdiff);
+
+                    }
+                    difficl = _.cloneDeep(diffi);
+                    console.log(difficl);
+                    var i = 0;
+                    while (i < qnumberundert)
+                    {
+                        var themax = 0;
+                        for (var n of difficl.keys()) {
+                            if (difficl.get(n) > difficl.get(themax)) {
+                                //console.log("new bigger one found, which is" + n);
+                                themax = n;
+                            }
+                        }
+                        //console.log("loop " + i + " is over, got the biggest number at index" + themax);
+                        hardtosimple[i] = themax;
+                        i++;
+                        difficl.set(themax, -1);
+
+                    }
+                    //alert(hardtosimple[0] + "," + hardtosimple[1] + "," + hardtosimple[2] + "," + hardtosimple[3] + "," + "------" + diffi.get(hardtosimple[0]) + "," + diffi.get(hardtosimple[1]) + "," + diffi.get(hardtosimple[2]) + "," + diffi.get(hardtosimple[3]));
+                    //following to change interface
+                    generatequestion();
+
+
+                } else if (questions[imajiti - 1][0].slice(0, 2) == "SA") {
+                    alert("This question is a Sellect-all-that-apply question, which is not yet supported by our algorithm, auto jump to the next question.");
+                    imajiti++;
+                }
+            }
+        }
+
+        function generatequestion() {
+            //this function shows a question under current topics according to variable imawen
+            if (imawen <= qnumberundert - 1 && imawen >= 0)
+            {
+                var indexes = new Array("1", "2", "3", "4");
+                thecorrectindex = randomNum(1, 4);
+
+                for (var n = 0; n < indexes.length; n++) {
+                    if (indexes[n] == thecorrectindex) {
+                        indexes.splice(n, 1);
+                    }
+                }
+                document.getElementById('ques').innerHTML = questions[imajiti - 1][2];
+                
+                
+                document.getElementById('opt' + thecorrectindex).innerHTML = quanzhengque[hardtosimple[imawen]][0];
+                var quanxuanzen = 0;
+                for (var n of indexes) {
+
+                    document.getElementById('opt' + n).innerHTML = quanxuanze[hardtosimple[imawen]][quanxuanzen][0];
+                    quanxuanzen++;
+                }
+                //alert("question generated, the difficulty for this question is " + diffi.get(imawen));
+            } else {
+                if (imawen > qnumberundert - 1) {
+                    imawen = qnumberundert - 1;
+                    alert("This is the least difficult question under this topic, please make sure you are correct about this");
+                }
+                if (imawen < 0) {
+                    imawen = 0;
+                    alert("you have completed the most difficult question under this topic, we do not have more to give you, you can go to the next topic");
+                }
+            }
+        }
+        function begin() {
+            document.getElementById('kaishi').style.display = "none";
+            chushi();
+            document.getElementById('intro').style.display = "none";
+            document.getElementById('ready').style.display = "none";
+            document.getElementById('ti').style.display = "";
+            for (var n = 0; n < answers.length; n++) {
+                var duidu = answers[n][2] * 0.7 + 0.2 * answers[n][4] / 10 + 0.1 * answers[n][5] / 10;
+                answers[n].push(duidu);
+
+            }
+            generatetopic();
+
+
+
+        }
+        function retake() {
+            chushi();
+            firsttry = true;
+            document.getElementById('bt1').style.display = "none";
+            console.log("imawen is now " + imawen);
+            console.log(hardtosimple);
+            if (lastcorrect == true) {
+                imawen--;
+                alert("since you are correct in the last question, will give you a more difficult one this time");
+            } else {
+                imawen++;
+                alert("since you are incorrect in the last question, will give you a less difficult one this time");
+            }
+            generatequestion();
+            console.log("imawen is now " + imawen);
+        }
+
+
+        function randomNum(minNum, maxNum) {
+            switch (arguments.length) {
+                case 1:
+                    return parseInt(Math.random() * minNum + 1, 10);
+                    break;
+                case 2:
+                    return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
+                    break;
+                default:
+                    return 0;
+                    break;
+            }
+        }
+        function submit() {
+            
+            
+            var a;
+            a = $('input:radio[name="9"]:checked').val();
+
+
+            if (a === undefined) {
+                alert("input something, ok?");
+                
+                return undefined;
+            } else{
+                document.getElementById('explain').style.display = "";
+                document.getElementById('correct').style.display = "";
+            if (a == thecorrectindex && firsttry == true) {
+                document.getElementById('bt1').style.display = "";
+                document.getElementById('correct').innerHTML = "Correct!";
+                lastcorrect = true;
+            } else {
+                document.getElementById('bt1').style.display = "";
+                document.getElementById('correct').innerHTML = "Not Correct, you may read the explanation and try again";
+                lastcorrect = false;
+                firsttry = false;
+            }
+            var n = randomNum(0, imacorrect2.length - 1);
+            document.getElementById('explain').innerHTML = "The following is an example for a good answer, you may learn somethign from it: <br>" + imacorrect2[n][0];
+        }}
+
+        function next() {
+            imajiti++;
+            generatetopic();
+            generatequestion();
+        }
+
+
+</script>  
