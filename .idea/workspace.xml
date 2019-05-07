@@ -2,9 +2,68 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e962317-9a98-4bab-9da7-b4eb50b838cb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Questions_data_prj3 (1).csv" beforeDir="false" afterPath="$PROJECT_DIR$/Questions_data_prj3 (1).csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Answers_data_prj3_updated.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/MeinKampf.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/amplitude.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/jquery.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/meinkampf-EN.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/p2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/p3.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/p4.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/p5.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/p6.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/p7.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/sel.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/timbre.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/vid.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/violin.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/finalbackup.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/finalbackup的副本.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/public_html/2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/public_html/3.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/public_html/cssfor.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/public_html/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/public_html/jquery-2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/public_html/jquery.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/public_html/log1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/public_html/log2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/public_html/newcss.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/public_html/reg1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/public_html/reg2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/public_html/unsafeWebDB.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/归档 2.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/归档.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/归档/amplitude.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/归档/finalbackup.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/归档/finalbackup的副本.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/归档/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/归档/jquery.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/归档/p2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/归档/p3.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/归档/p4.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/归档/p5.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/归档/p6.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/归档/p7.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/归档/public_html/2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/归档/public_html/3.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/归档/public_html/cssfor.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/归档/public_html/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/归档/public_html/jquery-2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/归档/public_html/jquery.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/归档/public_html/log1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/归档/public_html/log2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/归档/public_html/newcss.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/归档/public_html/reg1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/归档/public_html/reg2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/归档/public_html/unsafeWebDB.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/归档/sel.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/归档/timbre.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/归档/vid.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/未命名文件夹/归档/violin.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/try.html" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,41 +78,61 @@
     <session id="-62439916">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.1" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.open.time.4" value="3" />
+          <entry key="project.open.time.5" value="2" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="html" value="1" />
+          <entry key="csv" value="2" />
+          <entry key="html" value="4" />
+          <entry key="js" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="1" />
+          <entry key="CSV" value="1" />
+          <entry key="HTML" value="4" />
+          <entry key="JavaScript" value="2" />
+          <entry key="PLAIN_TEXT" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="1060" />
+          <entry key="html" value="2354" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="4" />
-          <entry key="HTML" value="1056" />
+          <entry key="HTML" value="2350" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lodash.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="7815">
+              <caret line="521" selection-start-line="521" selection-end-line="521" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-109">
-              <caret line="25" column="19" lean-forward="true" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+            <state relative-caret-position="309">
+              <caret line="92" column="16" selection-start-line="92" selection-start-column="16" selection-end-line="92" selection-end-column="16" />
+              <folding>
+                <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -67,6 +146,18 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>alert</find>
+      <find>opt1</find>
+      <find>innerHTML</find>
+      <find>most</find>
+      <find>submit</find>
+      <find>begin</find>
+      <find>ti</find>
+      <find>title</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -74,6 +165,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/try.html" />
       </list>
     </option>
   </component>
@@ -84,8 +176,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="307" />
-    <option name="y" value="75" />
+    <option name="x" value="10" />
+    <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="720" />
   </component>
@@ -137,23 +229,24 @@
       <option name="presentableId" value="Default" />
       <updated>1556312184112</updated>
       <workItem from="1556312185808" duration="3995000" />
+      <workItem from="1556461195506" duration="119000" />
+      <workItem from="1556826452187" duration="62000" />
+      <workItem from="1556826527552" duration="3631000" />
+      <workItem from="1557124311579" duration="369000" />
+      <workItem from="1557174310262" duration="7351000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3995000" />
+    <option name="totallyTimeSpent" value="15527000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="307" y="75" width="1440" height="720" extended-state="0" />
+    <frame x="10" y="23" width="1440" height="720" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24947146" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -161,6 +254,10 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -173,10 +270,55 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/old/未命名文件夹/public_html/3.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-242" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html" />
+    <entry file="file://$PROJECT_DIR$/jquery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Answers_data_prj3_updated.csv">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="-17" />
+      </provider>
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+      <provider selected="true" editor-type-id="csv-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/old/未命名文件夹/public_html/2.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/export.csv">
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+      <provider selected="true" editor-type-id="csv-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lodash.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7815">
+          <caret line="521" selection-start-line="521" selection-end-line="521" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-109">
-          <caret line="25" column="19" lean-forward="true" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+        <state relative-caret-position="309">
+          <caret line="92" column="16" selection-start-line="92" selection-start-column="16" selection-end-line="92" selection-end-column="16" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
