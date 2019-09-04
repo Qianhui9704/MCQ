@@ -1,5 +1,4 @@
-# MCQ
-#Choice selection mechanism
+# Choice selection mechanism
 
 Before jumping to the selection mechanism, let’s clarify and justify some important definitions: 
 ## (1) Our evaluation of answer quality
@@ -13,32 +12,32 @@ We are going to have 4 questions under each topic. Among all the open-text answe
 According to our previous experience with multiple choice questions, the more similar choices are between one another, the harder the question would be. Therefore the difficulty of a question is defined as 
 Difficulty = 1/[abs(correct_answer_score - incorrectChoice1)] + 1/[abs(correct_answer_score - incorrectChoice2)] + 1/[abs(correct_answer_score - incorrectChoice3)]
 
-There are several principles that we strictly followed for choice selection: 
-## (1) There could not be repetitive choices under the same question. After we got an array of incorrect answers under the same topic, we used random () function to generate a key for incorrect answer. Once the key is used, it could not be used again in the same question.
-## (2) We strictly considered different ways of being incorrect. For example, if the correct answer of that question is A, the answers from people who chose C and D would be treated as different ways of being incorrect. We would prioritize the diversity of incorrect choices. Only when we complete numerating different ways of being incorrect will we begin to include wrong answers from the same way of being incorrect. 
-## (3) The difficulty of questions will be adaptive based on students’ performance. This is a direct application of Item Response Theory (IRT). We assume that students’ knowledge level of this topic is set before taking this quiz, in other words, we are not aiming at teaching them something new in this quiz. Once a student answer a question incorrectly, he or she could choose to retake, in which case, he or she will be provided with an easier question. If students did wrong even the simplest question for that problem, the system would suggest him to go review the materials before retaking. Once a student answer correctly even the hardest question under a topic, the system would suggest him to review another topic. 
+# Principles for choice selection: 
+(1) There could not be repetitive choices under the same question. After we got an array of incorrect answers under the same topic, we used random () function to generate a key for incorrect answer. Once the key is used, it could not be used again in the same question.
+(2) We strictly considered different ways of being incorrect. For example, if the correct answer of that question is A, the answers from people who chose C and D would be treated as different ways of being incorrect. We would prioritize the diversity of incorrect choices. Only when we complete numerating different ways of being incorrect will we begin to include wrong answers from the same way of being incorrect. 
+(3) The difficulty of questions will be adaptive based on students’ performance. This is a direct application of Item Response Theory (IRT). We assume that students’ knowledge level of this topic is set before taking this quiz, in other words, we are not aiming at teaching them something new in this quiz. Once a student answer a question incorrectly, he or she could choose to retake, in which case, he or she will be provided with an easier question. If students did wrong even the simplest question for that problem, the system would suggest him to go review the materials before retaking. Once a student answer correctly even the hardest question under a topic, the system would suggest him to review another topic. 
 
-# Question retake mechanism
+## Question retake mechanism
 There are several principles that we strictly followed for retake mechanism:
-## (1) We are going to change some choices in the original question to make new questions. 
-## (2) If the student did it wrong and choose to retake, the difficulty of questions need to be easier, which is to say, if the student answers a simple question incorrectly, he or she would be provided with simpler questions. In the actual implementation, we are replacing choices with those having a larger score difference from the correct choice. 
-## (3) If students did wrong even the simplest question for that problem, the question won’t be changed as there are no simpler questions and the system would suggest him go review the materials before retaking. 
-## (4) If students did wrong, he could only choose to retake the question rather than submit it again. 
+(1) We are going to change some choices in the original question to make new questions. 
+(2) If the student did it wrong and choose to retake, the difficulty of questions need to be easier, which is to say, if the student answers a simple question incorrectly, he or she would be provided with simpler questions. In the actual implementation, we are replacing choices with those having a larger score difference from the correct choice. 
+(3) If students did wrong even the simplest question for that problem, the question won’t be changed as there are no simpler questions and the system would suggest him go review the materials before retaking. 
+(4) If students did wrong, he could only choose to retake the question rather than submit it again. 
 
 
-#Feedback mechanism supported by theory
-## (1)we provide learners with immediate feedback regarding true or false. Immediate feedback is most effective, which is corroborated by a couple of research studies. 
-##Then we provide sample answers (elaborative feedback), which are the answers with the highest scores as calculated by our algorithm mentioned before. In collaborative learning, teachers sometimes provide sample answer as “golden standards”. Elaborative feedback is useful for students in terms of getting them to know where they need improvement. Students could reflect on their own answers by looking at the answers generated by their peers. 
+## Feedback mechanism supported by theory
+(1)We provide learners with immediate feedback regarding true or false. Immediate feedback is most effective, which is corroborated by a couple of research studies. 
+(2)We provide sample answers (elaborative feedback), which are the answers with the highest scores as calculated by our algorithm mentioned before. In collaborative learning, teachers sometimes provide sample answer as “golden standards”. Elaborative feedback is useful for students in terms of getting them to know where they need improvement. Students could reflect on their own answers by looking at the answers generated by their peers. 
 
-# Summary of what worked and what didn’t, using the model on the validation set
+## Summary of what worked and what didn’t, using the model on the validation set
 What worked well: 
-##(1) The question and answers were correctly displayed in terms of completeness
+(1) The question and answers were correctly displayed in terms of completeness
 (2) Elaborative feedback is given to students no matter they answered it correctly or incorrectly  
 What didn’t work: 
 (1) It seems that everything we implemented worked as expected. 
 
 
-Future improvement reflection
+## Future improvement reflection
 We believe we did a good job on this assignment by considering all Future improvement suggestions are listed from easiest to hardest to implement: 
 (1) Make it able to parse and generate select-all-that-apply questions
 In this assignment we didn’t make it parse select-all-that-apply questions
